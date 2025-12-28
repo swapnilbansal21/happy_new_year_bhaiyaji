@@ -2,58 +2,56 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy New Year Guruji</title>
+<title>Happy New Year BhaiyaJi</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ========================= */
-/* RESET & SAFE AREA FIX    */
-/* ========================= */
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
 }
 
+/* ================= BODY ================= */
 body {
   font-family: 'Georgia', 'Times New Roman', serif;
   color: #2b2b2b;
+
+  /* 🔥 CRITICAL FIX */
+  padding-top: 80px;     /* REAL buffer for mobile chrome */
+  padding-bottom: 120px;
+
   overflow-x: hidden;
-  padding-top: env(safe-area-inset-top); /* 🔥 critical fix */
+  overflow-y: auto;
+
   background:
     radial-gradient(circle at top, rgba(255,220,150,0.7), transparent 40%),
     radial-gradient(circle at bottom, rgba(255,180,90,0.6), transparent 45%),
     linear-gradient(135deg, #fff3c4, #f6d47a, #f0b94a);
 }
 
-/* ========================= */
-/* LOTUS (LEFT TOP)          */
-/* ========================= */
+/* ================= LOTUS ================= */
 .lotus {
   position: fixed;
-  top: 20px;
-  left: 20px;
-  width: 260px;
-  height: 260px;
+  top: 15px;
+  left: 15px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   background: radial-gradient(circle,
     rgba(255,200,220,0.9),
     rgba(255,120,160,0.4),
     transparent 70%);
   filter: blur(2px);
-  animation: lotusBloom 6s ease-out forwards;
   z-index: 0;
 }
 
-@keyframes lotusBloom {
-  from { transform: scale(0.2); opacity: 0; }
-  to   { transform: scale(1); opacity: 0.9; }
-}
-
-/* ========================= */
-/* DIVINE RAYS               */
-/* ========================= */
+/* ================= RAYS ================= */
 .rays {
   position: fixed;
   inset: -50%;
@@ -62,200 +60,124 @@ body {
     rgba(255,215,120,0.05) 12deg,
     transparent 24deg
   );
-  animation: rotateRays 50s linear infinite;
+  animation: spin 50s linear infinite;
   z-index: 0;
 }
 
-@keyframes rotateRays {
+@keyframes spin {
   to { transform: rotate(360deg); }
 }
 
-/* ========================= */
-/* BLESSING PARTICLES        */
-/* ========================= */
-.blessing {
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  background: rgba(255,215,120,0.9);
-  border-radius: 50%;
-  animation: rise 12s linear infinite;
-}
-
-@keyframes rise {
-  from { transform: translateY(110vh); opacity: 0; }
-  to   { transform: translateY(-10vh); opacity: 1; }
-}
-
-/* ========================= */
-/* MAIN LAYOUT               */
-/* ========================= */
-.screen {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 70px;
+/* ================= CONTENT ================= */
+.wrapper {
   position: relative;
   z-index: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .card {
-  background: rgba(255,255,255,0.94);
+  background: rgba(255,255,255,0.95);
+  width: 92%;
   max-width: 900px;
-  width: 90%;
-  padding: 60px;
-  border-radius: 20px;
-  border: 1px solid rgba(255,215,120,0.6);
-  box-shadow: 0 40px 90px rgba(0,0,0,0.25);
+  padding: 48px 28px;
+  border-radius: 22px;
   text-align: center;
+  box-shadow: 0 35px 80px rgba(0,0,0,0.25);
 }
 
-/* ========================= */
-/* OM & TEXT                 */
-/* ========================= */
+/* ================= TEXT ================= */
 .om {
-  font-size: 46px;
-  margin-bottom: 20px;
-  animation: glow 3s infinite alternate;
+  font-size: 42px;
+  margin-bottom: 16px;
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 5px #f5c76a; }
-  to   { text-shadow: 0 0 30px #ffdf8c; }
+h1 {
+  font-size: 30px;
+  margin: 14px 0;
 }
 
-h1 { font-size: 42px; margin: 15px 0; }
-h2 { font-size: 20px; color: #6f5b2c; margin-bottom: 25px; }
-p  { font-size: 18px; line-height: 1.8; }
+h2 {
+  font-size: 16px;
+  color: #6f5b2c;
+  margin-bottom: 22px;
+}
 
-.gold { color: #b38b2e; font-weight: bold; }
+p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.gold {
+  color: #b38b2e;
+  font-weight: bold;
+}
 
 .divider {
-  width: 110px;
+  width: 90px;
   height: 2px;
   background: linear-gradient(to right, transparent, #d4af37, transparent);
-  margin: 30px auto;
+  margin: 22px auto;
 }
 
-/* ========================= */
-/* GURU IMAGE + AURA         */
-/* ========================= */
+/* ================= GURU IMAGE ================= */
 .guru-wrap {
   position: relative;
-  display: inline-block;
-  margin-bottom: 20px;
-}
-
-.guru-aura {
-  position: absolute;
-  inset: -35px;
-  border-radius: 50%;
-  background: radial-gradient(circle,
-    rgba(255,230,170,0.95),
-    rgba(255,175,70,0.25),
-    transparent 70%);
-  filter: blur(10px);
-  z-index: -1;
+  margin-bottom: 18px;
 }
 
 .guru-img {
-  width: 170px;
-  height: 170px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   border: 6px solid #d4af37;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  box-shadow: 0 16px 35px rgba(0,0,0,0.35);
   object-fit: cover;
 }
 
-/* ========================= */
-/* DIYA (RIGHT BOTTOM)       */
-/* ========================= */
+/* ================= DIYA ================= */
 .diya {
   position: fixed;
-  bottom: 25px;
-  right: 30px;
-  width: 160px;
-  height: 80px;
+  bottom: 15px;
+  right: 15px;
+  width: 110px;
+  height: 55px;
   background: linear-gradient(#8b4513, #5a2e0f);
-  border-radius: 0 0 120px 120px;
-  box-shadow: 0 18px 45px rgba(0,0,0,0.4);
+  border-radius: 0 0 90px 90px;
   z-index: 0;
-}
-
-.diya::before {
-  content: '';
-  position: absolute;
-  top: -18px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 32px;
-  background: linear-gradient(#a0522d, #6b3a18);
-  border-radius: 50%;
 }
 
 .flame {
   position: absolute;
-  top: -85px;
+  top: -45px;
   left: 50%;
   transform: translateX(-50%);
-  width: 28px;
-  height: 65px;
+  width: 18px;
+  height: 38px;
   background: radial-gradient(circle at bottom,
     #fff3a0, #ffd700, #ff8c00, #ff4500);
   border-radius: 50%;
-  animation: flicker 1.3s infinite ease-in-out;
-  box-shadow: 0 0 55px rgba(255,180,50,1);
 }
 
-@keyframes flicker {
-  50% { transform: translateX(-50%) scale(1.12); }
+/* ================= STATES ================= */
+.hidden {
+  display: none;
 }
 
-/* ========================= */
-/* MOBILE FIXES              */
-/* ========================= */
-@media (max-width: 600px) {
-
-  .screen {
-    padding-top: 90px;
+/* ================= DESKTOP ================= */
+@media (min-width: 768px) {
+  body {
+    padding-top: 40px;
   }
 
-  h1 { font-size: 30px; }
-  h2 { font-size: 16px; }
-  p  { font-size: 15px; }
+  h1 { font-size: 40px; }
+  p  { font-size: 18px; }
 
   .guru-img {
-    width: 130px;
-    height: 130px;
+    width: 170px;
+    height: 170px;
   }
-
-  .lotus {
-    width: 180px;
-    height: 180px;
-  }
-
-  .diya {
-    width: 110px;
-    height: 55px;
-    right: 15px;
-    bottom: 12px;
-  }
-
-  .flame {
-    width: 18px;
-    height: 40px;
-    top: -55px;
-  }
-}
-
-.hidden { display: none; }
-.fade { animation: fadeIn 2s ease forwards; }
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
 }
 </style>
 </head>
@@ -265,45 +187,41 @@ p  { font-size: 18px; line-height: 1.8; }
 <div class="rays"></div>
 <div class="lotus"></div>
 
-<div class="blessing" style="left:20%"></div>
-<div class="blessing" style="left:40%; animation-delay:3s"></div>
-<div class="blessing" style="left:60%; animation-delay:5s"></div>
-<div class="blessing" style="left:80%; animation-delay:2s"></div>
+<div class="diya">
+  <div class="flame"></div>
+</div>
 
-<div class="diya"><div class="flame"></div></div>
-
-<div class="screen">
+<div class="wrapper">
   <div class="card">
 
     <div class="om">ॐ</div>
 
-    <div id="thankScreen" class="fade">
-      <h1>Thank You, Guruji</h1>
-      <h2>For blessing the year 2025</h2>
+    <div id="thank">
+      <h1>Thank You, BhaiyaJi</h1>
+      <h2>For blessing the year gone by</h2>
       <div class="divider"></div>
       <p>
-        I bow with gratitude for your
-        <span class="gold">guidance, wisdom, and blessings</span>.
+        With deep gratitude for your
+        <span class="gold">guidance and blessings</span>.
       </p>
     </div>
 
-    <div id="newYearScreen" class="hidden">
+    <div id="newYear" class="hidden">
       <div class="guru-wrap">
-        <div class="guru-aura"></div>
         <img src="guruji.jpeg" class="guru-img" alt="Guruji">
       </div>
 
-      <h1>Happy New Year, Guruji 🎉</h1>
+      <h1>Happy New Year, BhaiyaJi 🎉</h1>
       <h2>With prayers for the year ahead</h2>
       <div class="divider"></div>
 
       <p>
         May the New Year bring you
-        <span class="gold">good health, peace, happiness</span>,
+        <span class="gold">health, peace, happiness</span>,
         and divine grace.
       </p>
 
-      <h1 class="gold">✨ Welcome New Year 2026 ✨</h1>
+      <h1 class="gold">✨ Welcome 2026 ✨</h1>
       <p><strong>— Swapnil</strong></p>
     </div>
 
@@ -312,10 +230,9 @@ p  { font-size: 18px; line-height: 1.8; }
 
 <script>
 setTimeout(() => {
-  thankScreen.classList.add("hidden");
-  newYearScreen.classList.remove("hidden");
-  newYearScreen.classList.add("fade");
-}, 9000);
+  document.getElementById("thank").classList.add("hidden");
+  document.getElementById("newYear").classList.remove("hidden");
+}, 5000);
 </script>
 
 </body>
