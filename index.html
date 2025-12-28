@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year Guruji</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ===== BODY & BACKGROUND ===== */
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  overflow: hidden;
+  color: #2b2b2b;
+  background:
+    radial-gradient(circle at top, rgba(255,220,150,0.7), transparent 40%),
+    radial-gradient(circle at bottom, rgba(255,180,90,0.6), transparent 45%),
+    linear-gradient(135deg, #fff3c4, #f6d47a, #f0b94a);
+}
+
+/* ===== LOTUS BLOOM (LEFT TOP) ===== */
+.lotus {
+  position: fixed;
+  top: 20px;
+  left: 30px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center,
+      rgba(255,200,220,0.9) 0%,
+      rgba(255,170,200,0.7) 30%,
+      rgba(255,120,160,0.4) 55%,
+      transparent 70%);
+  filter: blur(2px);
+  animation: lotusBloom 6s ease-out forwards;
+  z-index: 0;
+}
+
+/* ===== GURU BLESSING AURA (HALO) ===== */
+.guru-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 25px; /* keeps same spacing as before */
+}
+
+.guru-aura {
+  position: absolute;
+  inset: -35px;              /* halo size around image */
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(255, 230, 170, 0.95) 0%,
+    rgba(255, 205, 120, 0.55) 35%,
+    rgba(255, 175, 70, 0.25) 55%,
+    transparent 70%);
+  filter: blur(10px);
+  z-index: -1;
+  animation: auraPulse 5s ease-in-out infinite;
+}
+
+@keyframes auraPulse {
+  0%, 100% { transform: scale(1); opacity: 0.75; }
+  50%      { transform: scale(1.10); opacity: 1; }
+}
+
+
+@keyframes lotusBloom {
+  0%   { transform: scale(0.2); opacity: 0; }
+  40%  { opacity: 1; }
+  100% { transform: scale(1); opacity: 0.9; }
+}
+
+.lotus::before,
+.lotus::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(255,160,190,0.6) 0deg,
+      rgba(255,160,190,0.3) 12deg,
+      transparent 24deg
+    );
+  animation: petalRotate 18s linear infinite;
+}
+
+.lotus::after {
+  animation-direction: reverse;
+  opacity: 0.6;
+}
+
+@keyframes petalRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ===== DIVINE RAYS ===== */
+.rays {
+  position: fixed;
+  inset: -50%;
+  background: repeating-conic-gradient(
+    rgba(255,215,120,0.12) 0deg,
+    rgba(255,215,120,0.05) 12deg,
+    transparent 24deg
+  );
+  animation: rotateRays 50s linear infinite;
+  z-index: 0;
+}
+
+@keyframes rotateRays {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ===== BLESSING PARTICLES ===== */
+.blessing {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: rgba(255,215,120,0.9);
+  border-radius: 50%;
+  animation: rise 12s linear infinite;
+}
+
+@keyframes rise {
+  from { transform: translateY(110vh); opacity: 0; }
+  to { transform: translateY(-10vh); opacity: 1; }
+}
+
+/* ===== LAYOUT ===== */
+.screen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(6px);
+  max-width: 900px;
+  width: 90%;
+  padding: 70px 60px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,215,120,0.6);
+  box-shadow: 0 40px 90px rgba(0,0,0,0.25);
+  text-align: center;
+  animation: zoomIn 2s ease forwards;
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Om */
+.om {
+  font-size: 46px;
+  margin-bottom: 20px;
+  animation: glow 3s infinite alternate, slowRotate 20s linear infinite;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px #f5c76a; }
+  to { text-shadow: 0 0 30px #ffdf8c; }
+}
+
+@keyframes slowRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+h1 { font-size: 44px; margin: 15px 0; }
+h2 { font-size: 20px; color: #6f5b2c; margin-bottom: 30px; font-weight: normal; }
+p { font-size: 19px; line-height: 1.9; }
+
+.gold { color: #b38b2e; font-weight: bold; }
+
+.divider {
+  width: 110px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #d4af37, transparent);
+  margin: 30px auto;
+}
+
+.hidden { display: none; }
+.fade { animation: fadeIn 2s ease forwards; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Guru image */
+.guru-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 6px solid #d4af37;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  margin-bottom: 25px;
+  object-fit: cover;
+}
+
+/* ===== DIYA (RIGHT BOTTOM – BIG) ===== */
+.diya {
+  position: fixed;
+  bottom: 35px;
+  right: 45px;
+  width: 180px;
+  height: 90px;
+  background: linear-gradient(#8b4513, #5a2e0f);
+  border-radius: 0 0 120px 120px;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.4);
+  z-index: 0;
+}
+
+.diya::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 36px;
+  background: linear-gradient(#a0522d, #6b3a18);
+  border-radius: 50%;
+}
+
+.flame {
+  position: absolute;
+  top: -95px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 34px;
+  height: 75px;
+  background: radial-gradient(circle at bottom,
+    #fff3a0,
+    #ffd700,
+    #ff8c00,
+    #ff4500);
+  border-radius: 50%;
+  animation: flicker 1.3s infinite ease-in-out;
+  box-shadow: 0 0 65px rgba(255,180,50,1);
+}
+
+@keyframes flicker {
+  0%   { transform: translateX(-50%) scale(1); }
+  50%  { transform: translateX(-50%) scale(1.12); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background layers -->
+<div class="rays"></div>
+<div class="lotus"></div>
+
+<!-- Blessings -->
+<div class="blessing" style="left:20%;"></div>
+<div class="blessing" style="left:40%; animation-delay:3s;"></div>
+<div class="blessing" style="left:60%; animation-delay:5s;"></div>
+<div class="blessing" style="left:80%; animation-delay:2s;"></div>
+
+<!-- DIYA -->
+<div class="diya">
+  <div class="flame"></div>
+</div>
+
+<div class="screen">
+  <div class="card">
+    <div class="om">ॐ</div>
+
+    <div id="thankScreen" class="fade">
+      <h1>Thank You, Guruji</h1>
+      <h2>For blessing the year 2025 gone by</h2>
+      <div class="divider"></div>
+      <p>
+        As this year comes to an end, I bow with deep gratitude
+        for your <span class="gold">guidance, wisdom, and blessings</span>.
+      </p>
+      <p>
+        Thank you for walking with me throughout the year
+        and lighting my path.
+      </p>
+    </div>
+
+    <div id="newYearScreen" class="hidden">
+   <div class="guru-wrap">
+  <div class="guru-aura"></div>
+  <img src="guruji.jpeg" class="guru-img" alt="Guruji">
+</div>
+
+      <h1>Happy New Year, Guruji 🎉</h1>
+      <h2>With prayers for the year ahead</h2>
+      <div class="divider"></div>
+      <p>
+        May the New Year bring you
+        <span class="gold">good health, peace, happiness</span>,
+        and divine grace.
+      </p>
+      <h1 class="gold">✨ Welcome New Year 2026 ✨</h1>
+      <p><strong>— Swapnil</strong></p>
+    </div>
+  </div>
+</div>
+
+<script>
+setTimeout(() => {
+  document.getElementById("thankScreen").classList.add("hidden");
+  document.getElementById("newYearScreen").classList.remove("hidden");
+  document.getElementById("newYearScreen").classList.add("fade");
+}, 10000);
+</script>
+
+</body>
+</html>
