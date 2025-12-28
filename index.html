@@ -6,6 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+/* ========================= */
+/* RESET & SAFE AREA FIX    */
+/* ========================= */
 html, body {
   margin: 0;
   padding: 0;
@@ -13,96 +16,44 @@ html, body {
   height: 100%;
 }
 
-/* ===== BODY & BACKGROUND ===== */
 body {
   font-family: 'Georgia', 'Times New Roman', serif;
-  overflow: hidden;
   color: #2b2b2b;
+  overflow-x: hidden;
+  padding-top: env(safe-area-inset-top); /* 🔥 critical fix */
   background:
     radial-gradient(circle at top, rgba(255,220,150,0.7), transparent 40%),
     radial-gradient(circle at bottom, rgba(255,180,90,0.6), transparent 45%),
     linear-gradient(135deg, #fff3c4, #f6d47a, #f0b94a);
 }
 
-/* ===== LOTUS BLOOM (LEFT TOP) ===== */
+/* ========================= */
+/* LOTUS (LEFT TOP)          */
+/* ========================= */
 .lotus {
   position: fixed;
   top: 20px;
-  left: 30px;
-  width: 300px;
-  height: 300px;
+  left: 20px;
+  width: 260px;
+  height: 260px;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at center,
-      rgba(255,200,220,0.9) 0%,
-      rgba(255,170,200,0.7) 30%,
-      rgba(255,120,160,0.4) 55%,
-      transparent 70%);
+  background: radial-gradient(circle,
+    rgba(255,200,220,0.9),
+    rgba(255,120,160,0.4),
+    transparent 70%);
   filter: blur(2px);
   animation: lotusBloom 6s ease-out forwards;
   z-index: 0;
 }
 
-/* ===== GURU BLESSING AURA (HALO) ===== */
-.guru-wrap {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 25px; /* keeps same spacing as before */
-}
-
-.guru-aura {
-  position: absolute;
-  inset: -35px;              /* halo size around image */
-  border-radius: 50%;
-  background: radial-gradient(circle,
-    rgba(255, 230, 170, 0.95) 0%,
-    rgba(255, 205, 120, 0.55) 35%,
-    rgba(255, 175, 70, 0.25) 55%,
-    transparent 70%);
-  filter: blur(10px);
-  z-index: -1;
-  animation: auraPulse 5s ease-in-out infinite;
-}
-
-@keyframes auraPulse {
-  0%, 100% { transform: scale(1); opacity: 0.75; }
-  50%      { transform: scale(1.10); opacity: 1; }
-}
-
-
 @keyframes lotusBloom {
-  0%   { transform: scale(0.2); opacity: 0; }
-  40%  { opacity: 1; }
-  100% { transform: scale(1); opacity: 0.9; }
+  from { transform: scale(0.2); opacity: 0; }
+  to   { transform: scale(1); opacity: 0.9; }
 }
 
-.lotus::before,
-.lotus::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background:
-    repeating-conic-gradient(
-      from 0deg,
-      rgba(255,160,190,0.6) 0deg,
-      rgba(255,160,190,0.3) 12deg,
-      transparent 24deg
-    );
-  animation: petalRotate 18s linear infinite;
-}
-
-.lotus::after {
-  animation-direction: reverse;
-  opacity: 0.6;
-}
-
-@keyframes petalRotate {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-/* ===== DIVINE RAYS ===== */
+/* ========================= */
+/* DIVINE RAYS               */
+/* ========================= */
 .rays {
   position: fixed;
   inset: -50%;
@@ -116,15 +67,16 @@ body {
 }
 
 @keyframes rotateRays {
-  from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* ===== BLESSING PARTICLES ===== */
+/* ========================= */
+/* BLESSING PARTICLES        */
+/* ========================= */
 .blessing {
   position: absolute;
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   background: rgba(255,215,120,0.9);
   border-radius: 50%;
   animation: rise 12s linear infinite;
@@ -132,58 +84,50 @@ body {
 
 @keyframes rise {
   from { transform: translateY(110vh); opacity: 0; }
-  to { transform: translateY(-10vh); opacity: 1; }
+  to   { transform: translateY(-10vh); opacity: 1; }
 }
 
-/* ===== LAYOUT ===== */
+/* ========================= */
+/* MAIN LAYOUT               */
+/* ========================= */
 .screen {
-  width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: flex-start;
+  padding-top: 70px;
   position: relative;
   z-index: 1;
 }
 
 .card {
   background: rgba(255,255,255,0.94);
-  backdrop-filter: blur(6px);
   max-width: 900px;
   width: 90%;
-  padding: 70px 60px;
+  padding: 60px;
   border-radius: 20px;
   border: 1px solid rgba(255,215,120,0.6);
   box-shadow: 0 40px 90px rgba(0,0,0,0.25);
   text-align: center;
-  animation: zoomIn 2s ease forwards;
 }
 
-@keyframes zoomIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* Om */
+/* ========================= */
+/* OM & TEXT                 */
+/* ========================= */
 .om {
   font-size: 46px;
   margin-bottom: 20px;
-  animation: glow 3s infinite alternate, slowRotate 20s linear infinite;
+  animation: glow 3s infinite alternate;
 }
 
 @keyframes glow {
   from { text-shadow: 0 0 5px #f5c76a; }
-  to { text-shadow: 0 0 30px #ffdf8c; }
+  to   { text-shadow: 0 0 30px #ffdf8c; }
 }
 
-@keyframes slowRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-h1 { font-size: 44px; margin: 15px 0; }
-h2 { font-size: 20px; color: #6f5b2c; margin-bottom: 30px; font-weight: normal; }
-p { font-size: 19px; line-height: 1.9; }
+h1 { font-size: 42px; margin: 15px 0; }
+h2 { font-size: 20px; color: #6f5b2c; margin-bottom: 25px; }
+p  { font-size: 18px; line-height: 1.8; }
 
 .gold { color: #b38b2e; font-weight: bold; }
 
@@ -194,32 +138,45 @@ p { font-size: 19px; line-height: 1.9; }
   margin: 30px auto;
 }
 
-.hidden { display: none; }
-.fade { animation: fadeIn 2s ease forwards; }
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* ========================= */
+/* GURU IMAGE + AURA         */
+/* ========================= */
+.guru-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
 }
 
-/* Guru image */
+.guru-aura {
+  position: absolute;
+  inset: -35px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(255,230,170,0.95),
+    rgba(255,175,70,0.25),
+    transparent 70%);
+  filter: blur(10px);
+  z-index: -1;
+}
+
 .guru-img {
-  width: 180px;
-  height: 180px;
+  width: 170px;
+  height: 170px;
   border-radius: 50%;
   border: 6px solid #d4af37;
   box-shadow: 0 18px 40px rgba(0,0,0,0.35);
-  margin-bottom: 25px;
   object-fit: cover;
 }
 
-/* ===== DIYA (RIGHT BOTTOM – BIG) ===== */
+/* ========================= */
+/* DIYA (RIGHT BOTTOM)       */
+/* ========================= */
 .diya {
   position: fixed;
-  bottom: 35px;
-  right: 45px;
-  width: 180px;
-  height: 90px;
+  bottom: 25px;
+  right: 30px;
+  width: 160px;
+  height: 80px;
   background: linear-gradient(#8b4513, #5a2e0f);
   border-radius: 0 0 120px 120px;
   box-shadow: 0 18px 45px rgba(0,0,0,0.4);
@@ -229,170 +186,136 @@ p { font-size: 19px; line-height: 1.9; }
 .diya::before {
   content: '';
   position: absolute;
-  top: -20px;
+  top: -18px;
   left: 50%;
   transform: translateX(-50%);
-  width: 110px;
-  height: 36px;
+  width: 100px;
+  height: 32px;
   background: linear-gradient(#a0522d, #6b3a18);
   border-radius: 50%;
 }
 
 .flame {
   position: absolute;
-  top: -95px;
+  top: -85px;
   left: 50%;
   transform: translateX(-50%);
-  width: 34px;
-  height: 75px;
+  width: 28px;
+  height: 65px;
   background: radial-gradient(circle at bottom,
-    #fff3a0,
-    #ffd700,
-    #ff8c00,
-    #ff4500);
+    #fff3a0, #ffd700, #ff8c00, #ff4500);
   border-radius: 50%;
   animation: flicker 1.3s infinite ease-in-out;
-  box-shadow: 0 0 65px rgba(255,180,50,1);
+  box-shadow: 0 0 55px rgba(255,180,50,1);
 }
 
 @keyframes flicker {
-  0%   { transform: translateX(-50%) scale(1); }
-  50%  { transform: translateX(-50%) scale(1.12); }
-  100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.12); }
 }
 
-/* ============================= */
-/* MOBILE LANDSCAPE FIX (CRITICAL) */
-/* ============================= */
-@media (max-width: 900px) and (orientation: landscape) {
-
-  body {
-    overflow-y: auto;           /* allow scrolling */
-  }
+/* ========================= */
+/* MOBILE FIXES              */
+/* ========================= */
+@media (max-width: 600px) {
 
   .screen {
-    height: auto;
-    min-height: 100vh;
-    align-items: flex-start;    /* stop vertical centering */
-    padding: 20px 0;
+    padding-top: 90px;
   }
 
-  .card {
-    padding: 40px 30px;         /* reduce padding */
-    margin: 20px auto;
-  }
-
-  h1 {
-    font-size: 28px;
-  }
-
-  h2 {
-    font-size: 16px;
-    margin-bottom: 18px;
-  }
-
-  p {
-    font-size: 15px;
-    line-height: 1.6;
-  }
+  h1 { font-size: 30px; }
+  h2 { font-size: 16px; }
+  p  { font-size: 15px; }
 
   .guru-img {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
   }
 
-  /* Reduce lotus so it never clips */
   .lotus {
-    width: 200px;
-    height: 200px;
-    top: 10px;
-    left: 10px;
+    width: 180px;
+    height: 180px;
   }
 
-  /* Reduce diya so it stays visible */
   .diya {
     width: 110px;
     height: 55px;
-    bottom: 10px;
-    right: 12px;
-  }
-
-  .diya::before {
-    width: 65px;
-    height: 20px;
+    right: 15px;
+    bottom: 12px;
   }
 
   .flame {
-    width: 20px;
+    width: 18px;
     height: 40px;
     top: -55px;
   }
 }
 
+.hidden { display: none; }
+.fade { animation: fadeIn 2s ease forwards; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 </style>
 </head>
 
 <body>
 
-<!-- Background layers -->
 <div class="rays"></div>
 <div class="lotus"></div>
 
-<!-- Blessings -->
-<div class="blessing" style="left:20%;"></div>
-<div class="blessing" style="left:40%; animation-delay:3s;"></div>
-<div class="blessing" style="left:60%; animation-delay:5s;"></div>
-<div class="blessing" style="left:80%; animation-delay:2s;"></div>
+<div class="blessing" style="left:20%"></div>
+<div class="blessing" style="left:40%; animation-delay:3s"></div>
+<div class="blessing" style="left:60%; animation-delay:5s"></div>
+<div class="blessing" style="left:80%; animation-delay:2s"></div>
 
-<!-- DIYA -->
-<div class="diya">
-  <div class="flame"></div>
-</div>
+<div class="diya"><div class="flame"></div></div>
 
 <div class="screen">
   <div class="card">
+
     <div class="om">ॐ</div>
 
     <div id="thankScreen" class="fade">
       <h1>Thank You, Guruji</h1>
-      <h2>For blessing the year 2025 gone by</h2>
+      <h2>For blessing the year 2025</h2>
       <div class="divider"></div>
       <p>
-        As this year comes to an end, I bow with deep gratitude
-        for your <span class="gold">guidance, wisdom, and blessings</span>.
-      </p>
-      <p>
-        Thank you for walking with me throughout the year
-        and lighting my path.
+        I bow with gratitude for your
+        <span class="gold">guidance, wisdom, and blessings</span>.
       </p>
     </div>
 
     <div id="newYearScreen" class="hidden">
-   <div class="guru-wrap">
-  <div class="guru-aura"></div>
-  <img src="guruji.jpeg" class="guru-img" alt="Guruji">
-</div>
+      <div class="guru-wrap">
+        <div class="guru-aura"></div>
+        <img src="guruji.jpeg" class="guru-img" alt="Guruji">
+      </div>
 
       <h1>Happy New Year, Guruji 🎉</h1>
       <h2>With prayers for the year ahead</h2>
       <div class="divider"></div>
+
       <p>
         May the New Year bring you
         <span class="gold">good health, peace, happiness</span>,
         and divine grace.
       </p>
+
       <h1 class="gold">✨ Welcome New Year 2026 ✨</h1>
       <p><strong>— Swapnil</strong></p>
     </div>
+
   </div>
 </div>
 
 <script>
 setTimeout(() => {
-  document.getElementById("thankScreen").classList.add("hidden");
-  document.getElementById("newYearScreen").classList.remove("hidden");
-  document.getElementById("newYearScreen").classList.add("fade");
-}, 10000);
+  thankScreen.classList.add("hidden");
+  newYearScreen.classList.remove("hidden");
+  newYearScreen.classList.add("fade");
+}, 9000);
 </script>
 
 </body>
